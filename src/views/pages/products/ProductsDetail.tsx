@@ -899,7 +899,7 @@ const ProductsDetail = () => {
                                                 ADD TO CART
                                             </Button>
 
-                                            <Button
+                                            {/* <Button
                                                 sx={{
                                                     background: '#818181 !important',
                                                     borderRadius: '50px',
@@ -916,7 +916,7 @@ const ProductsDetail = () => {
                                                 variant="contained"
                                             >
                                                 ADD TO CART
-                                            </Button>
+                                            </Button> */}
                                         </>
                                     )}
                                     {stockinHand !== null && !stockinHand && (
