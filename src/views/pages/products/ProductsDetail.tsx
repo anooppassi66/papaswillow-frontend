@@ -39,7 +39,16 @@ import { AddOnCard } from './subcard/AddOnCard';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions
+} from "@mui/material";
+
 // =============================|| LANDING - CARD SECTION ||============================= //
+
+
 
 const ProductsDetails = styled(Box)(({ theme }) => ({
     borderRadius: '0px',
@@ -64,6 +73,13 @@ const ProductsDetails = styled(Box)(({ theme }) => ({
         }
     }
 }));
+
+const [open, setOpen] = useState(false);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+
 
 const ProductSlider = styled(Box)(({ theme }) => ({
     '.slider-container': {
@@ -732,6 +748,21 @@ const ProductsDetail = () => {
     console.log(productImages, 'productImages');
     return (
         <Container>
+             <Button variant="contained" onClick={handleOpen}>
+        Open Popup
+      </Button>
+
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>My Popup</DialogTitle>
+
+        <DialogContent>
+          This is a Material UI popup in Next.js 🚀
+        </DialogContent>
+
+        <DialogActions>
+          <Button onClick={handleClose}>Close</Button>
+        </DialogActions>
+      </Dialog>
             {/* {CartItems.length && <FreeDeliveryProgress />} */}
             <ProductsDetails>
                 <Grid container>
