@@ -895,9 +895,9 @@ const ProductsDetail = () => {
                                 <ProductAddCart>
                                     {stockinHand !== null && stockinHand > 0 && (
                                         <>
-                                            {/* <Button className="addtocart" onClick={handleIncCartItems} variant="contained">
+                                            <Button className="addtocart" onClick={handleIncCartItems} variant="contained">
                                                 ADD TO CART
-                                            </Button> */}
+                                            </Button>
 
                                             <Button
                                                 sx={{
