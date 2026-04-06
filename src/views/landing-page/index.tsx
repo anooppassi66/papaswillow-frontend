@@ -32,6 +32,9 @@ const LandingPage = () => {
 
       useEffect(() => {
     const handleClick = (e) => {
+
+        console.log('clicked element:', e.target); // Log the clicked element
+
       const anchor = e.target.closest("a");
 
       if (anchor && anchor.href) {
