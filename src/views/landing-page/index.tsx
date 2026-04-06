@@ -30,6 +30,23 @@ const LandingPage = () => {
     const { FeaturedProducts, DiscountProducts, HotDeals, isLoading, isSuccess } = useSelector((state) => state.store.products);
     const [popupOpen, setPopupOpen] = useState(true);
 
+      useEffect(() => {
+    const handleClick = (e) => {
+      const anchor = e.target.closest("a");
+
+      if (anchor && anchor.href) {
+        e.preventDefault(); // stop navigation
+        handleOpenPopup(); // open the popup
+      }
+    };
+
+    document.addEventListener("click", handleClick);
+
+    return () => {
+      document.removeEventListener("click", handleClick);
+    };
+  }, []);
+
     console.log('55featuredProductsfeaturedProducts', FeaturedProducts);
     //hotDealsProducts
     useEffect(() => {
@@ -38,6 +55,9 @@ const LandingPage = () => {
 
     const handleClosePopup = () => {
         setPopupOpen(false);
+    };
+    const handleOpenPopup = () => {
+        setPopupOpen(true);
     };
 
     return (
@@ -54,7 +74,7 @@ const LandingPage = () => {
                     </Button>
                 </DialogActions>
             </Dialog>
-            <Box className="2345" sx={{ mb: '20px' }}>
+            <Box className="2345" sx={{ mb: '20px' }} onClick={handleOpenPopup}>
                 <BannerDashBoard />
             </Box>
             <SliderProducts
@@ -64,9 +84,8 @@ const LandingPage = () => {
                 isLoading={isLoading}
                 isSuccess={isSuccess}
 
-
             />
-            <HomeProducts />
+            <HomeProducts/>
             {/* <LimitedDiscount/> */}
             {/* <SliderNoWrapProducts
                 title={'Discount Products'}
@@ -75,12 +94,12 @@ const LandingPage = () => {
                 isLoading={isLoading}
                 isSuccess={isSuccess}
             /> */}
-            <CategoriesCardSection />
-            <SliderProducts title="Hot Deals" url="Hot Deals" products={HotDeals} isLoading={isLoading} isSuccess={isSuccess} />
-            <InstagramFollowe />
-            <OurBrands />
-            <WhyChoose />
-            <CustomerRatings />
+            <CategoriesCardSection/>
+            <SliderProducts title="Hot Deals" url="Hot Deals" products={HotDeals} isLoading={isLoading} isSuccess={isSuccess}/>
+            <InstagramFollowe/>
+            <OurBrands/>
+            <WhyChoose/>
+            <CustomerRatings/>
         </>
     );
 };
