@@ -30,25 +30,25 @@ const LandingPage = () => {
     const { FeaturedProducts, DiscountProducts, HotDeals, isLoading, isSuccess } = useSelector((state) => state.store.products);
     const [popupOpen, setPopupOpen] = useState(true);
 
-      useEffect(() => {
-    const handleClick = (e) => {
+    useEffect(() => {
+        const handleClick = (e) => {
+            const anchor = e.target.closest("a");
 
-        console.log('clicked element:', e.target); // Log the clicked element
+            // Exclude tel: and mailto: links so users can still call/email from the popup
+            if (anchor && anchor.href && !anchor.href.startsWith("tel:") && !anchor.href.startsWith("mailto:")) {
+                e.preventDefault();
+                e.stopPropagation(); // Stop React Router from navigating
+                handleOpenPopup();
+            }
+        };
 
-      const anchor = e.target.closest("a");
+        // Use capture phase to intercept the click before React Router
+        document.addEventListener("click", handleClick, true);
 
-      if (anchor && anchor.href) {
-        e.preventDefault(); // stop navigation
-        handleOpenPopup(); // open the popup
-      }
-    };
-
-    document.addEventListener("click", handleClick);
-
-    return () => {
-      document.removeEventListener("click", handleClick);
-    };
-  }, []);
+        return () => {
+            document.removeEventListener("click", handleClick, true);
+        };
+    }, []);
 
     console.log('55featuredProductsfeaturedProducts', FeaturedProducts);
     //hotDealsProducts
